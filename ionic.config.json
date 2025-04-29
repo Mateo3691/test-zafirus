@@ -1,0 +1,7 @@
+{
+  "name": "test-zafirus",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
