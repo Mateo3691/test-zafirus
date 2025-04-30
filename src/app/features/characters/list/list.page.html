@@ -5,14 +5,16 @@
 </ion-header>
 
 <ion-content color="light">
-  <ion-list class="ion-content-view" [inset]="true">
-    @for(hero of data; track hero){
-      <ion-item [button]="true" detail="true" [routerLink]="['/detail', hero.id]">
-        <ion-avatar slot="start">
-          <img alt="Superheroe" src="{{hero.thumbnail.path}}.{{hero.thumbnail.extension}}" />
-        </ion-avatar>
-        <ion-label>{{hero.name}}</ion-label>
-      </ion-item>
-    }
-  </ion-list>
+  @if(data().length){
+    <ion-list class="ion-content-view" [inset]="true">
+      @for(hero of data(); track hero){
+        <ion-item [button]="true" detail="true" [routerLink]="['/detail', hero.id]">
+          <ion-avatar slot="start">
+            <img alt="Superheroe" src="{{hero.thumbnail.path}}.{{hero.thumbnail.extension}}" />
+          </ion-avatar>
+          <ion-label>{{hero.name}}</ion-label>
+        </ion-item>
+      }
+    </ion-list>
+  }
 </ion-content>
