@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{characterSelected?.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <ion-thumbnail class="detail-image">
+    <img alt="Silhouette of mountains" src="{{characterImage}}" />
+  </ion-thumbnail>
+
+  <ion-list class="ion-content-view" [inset]="true">
+    <ion-item>
+      <ion-label>Cantidad de Comics dispoinbles: </ion-label>
+      <ion-note slot="end" color="primary">{{characterComics}}</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Cantidad de Series dispoinbles: </ion-label>
+      <ion-note slot="end" color="primary">{{characterSeries}}</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Cantidad de Stories dispoinbles: </ion-label>
+      <ion-note slot="end" color="primary">{{characterStories}}</ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>
