@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   IonBackButton, IonButtons,
@@ -9,10 +9,12 @@ import {
   IonList,
   IonNote,
   IonThumbnail,
-  IonTitle, IonToolbar
+  IonTitle,
+  IonToast,
+  IonToolbar
 } from '@ionic/angular/standalone';
 import { CharactersApiService } from '../../../core/characters/characters-api.service';
-import { MarvelCharacter } from '../../../core/characters/characters.model';
+import { PokemonCharacterDetail } from '../../../core/characters/characters.model';
 
 @Component({
   selector: 'app-detail',
@@ -23,37 +25,49 @@ import { MarvelCharacter } from '../../../core/characters/characters.model';
     IonItem,
     IonLabel,
     IonList,
-    IonNote,]
+    IonNote,
+    IonToast]
 })
 export class DetailPage {
 
   characterService = inject(CharactersApiService);
   route = inject(ActivatedRoute);
-  characterSelected: MarvelCharacter | undefined = undefined;
+  pokemonSelected: PokemonCharacterDetail | undefined = undefined;
+  pokemonName: string = '';
+  isToastOpen: WritableSignal<boolean> = signal(false);
 
-  get characterComics(){
-    return this.characterSelected?.comics.available;;
+  get pokemonMoves(){
+    return this.pokemonSelected?.moves.length;
   }
 
-  get characterSeries(){
-    return this.characterSelected?.series.available;;
+  get pokemonTypes(){
+    return this.pokemonSelected?.types.length;
   }
 
-  get characterStories(){
-    return this.characterSelected?.stories.available;;
+  get pokemonAbilities(){
+    return this.pokemonSelected?.abilities.length;
   }
 
-  get characterImage(){
-    return this.characterSelected?.thumbnail.path + '.' + this.characterSelected?.thumbnail.extension;
+  get pokemonImage(){
+    return this.pokemonSelected?.sprites.front_default;
   }
 
   ionViewWillEnter() {
-    const id = this.route.snapshot.paramMap.get('id');
-    console.log("id", id);
-    if (id) {
-      this.characterSelected = this.characterService.data.find((character) => character.id === Number(id));
-      console.log("characterSelected", this.characterSelected);
+    this.pokemonName = this.route.snapshot.paramMap.get('name')!;
+    if (this.pokemonName) {
+      this.characterService.getPokemonById(this.pokemonName).subscribe({
+        next: (data) => {
+          this.pokemonSelected = data;
+        },
+        error: (err) => {
+          this.isToastOpen.set(true);
+        }
+      });
     }
+  }
+
+  setToastOpen() {
+    this.isToastOpen.set(!this.isToastOpen());
   }
 
 }

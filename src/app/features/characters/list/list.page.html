@@ -5,16 +5,24 @@
 </ion-header>
 
 <ion-content color="light">
-  @if(data().length){
+  @if(data.length){
     <ion-list class="ion-content-view" [inset]="true">
-      @for(hero of data(); track hero){
-        <ion-item [button]="true" detail="true" [routerLink]="['/detail', hero.id]">
+      @for(hero of data; track hero){
+        <ion-item [button]="true" detail="true" [routerLink]="['/detail', hero.name]">
           <ion-avatar slot="start">
-            <img alt="Superheroe" src="{{hero.thumbnail.path}}.{{hero.thumbnail.extension}}" />
+            <img alt="Superheroe" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
           </ion-avatar>
           <ion-label>{{hero.name}}</ion-label>
         </ion-item>
       }
     </ion-list>
   }
+  <ion-toast
+    class="{{className}}"
+    icon="globe"
+    [isOpen]="isToastOpen"
+    message="{{toastMessage}}"
+    [duration]="3000"
+    (didDismiss)="setToastOpen()"
+  ></ion-toast>
 </ion-content>

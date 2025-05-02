@@ -7,11 +7,16 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'detail',
+    redirectTo: 'list',
+    pathMatch: 'full',
+  },
+  {
     path: 'list',
     loadComponent: () => import('./features/characters/list/list.page').then( m => m.ListPage)
   },
   {
-    path: 'detail/:id',
+    path: 'detail/:name',
     loadComponent: () => import('./features/characters/detail/detail.page').then( m => m.DetailPage)
   },
 ];

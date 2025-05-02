@@ -3,29 +3,39 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{characterSelected?.name}}</ion-title>
+    <ion-title>Detalle del Pokémon</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color="light">
   <ion-thumbnail class="detail-image">
-    <img alt="Silhouette of mountains" src="{{characterImage}}" />
+    <img alt="Silhouette of mountains" src="{{pokemonImage}}" />
   </ion-thumbnail>
-
+  <div class="centered-container">
+    <ion-note class="name-class" color="medium">{{pokemonName}}</ion-note>
+  </div>
   <ion-list class="ion-content-view" [inset]="true">
     <ion-item>
-      <ion-label>Cantidad de Comics dispoinbles: </ion-label>
-      <ion-note slot="end" color="primary">{{characterComics}}</ion-note>
+      <ion-label>Movimientos: </ion-label>
+      <ion-note slot="end" color="primary">{{pokemonMoves}}</ion-note>
     </ion-item>
 
     <ion-item>
-      <ion-label>Cantidad de Series dispoinbles: </ion-label>
-      <ion-note slot="end" color="primary">{{characterSeries}}</ion-note>
+      <ion-label>Tipos: </ion-label>
+      <ion-note slot="end" color="primary">{{pokemonTypes}}</ion-note>
     </ion-item>
 
     <ion-item>
-      <ion-label>Cantidad de Stories dispoinbles: </ion-label>
-      <ion-note slot="end" color="primary">{{characterStories}}</ion-note>
+      <ion-label>Habilidades: </ion-label>
+      <ion-note slot="end" color="primary">{{pokemonAbilities}}</ion-note>
     </ion-item>
   </ion-list>
+  <ion-toast
+    class="error-toast"
+    icon="globe"
+    [isOpen]="isToastOpen"
+    message="Error al cargar el Pokémon"
+    [duration]="3000"
+    (didDismiss)="setToastOpen()"
+  ></ion-toast>
 </ion-content>

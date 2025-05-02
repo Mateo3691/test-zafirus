@@ -1,26 +1,14 @@
-export interface MarvelCharacter {
-    id: number;
+export interface PokemonCharacter {
     name: string;
-    description: string;
-    modified: string;
-    resourceURI: string;
-    urls: {
-      type: string;
-      url: string;
-    }[];
-    thumbnail: {
-      path: string;
-      extension: string;
+    url: string;
+}
+
+// la hago de forma parcial para declarar datos que no voy a usar
+export interface PokemonCharacterDetail {
+    moves: any[]
+    abilities: any[];
+    sprites: {
+        front_default: string;
     };
-    comics: ResourceList;
-    series: ResourceList;
-    stories: ResourceList;
-    events: ResourceList;
-  }
-  
-  export interface ResourceList {
-    available: number;
-    collectionURI: string;
-    items: any[];
-    returned: number;
-  }
+    types: any[];
+}
