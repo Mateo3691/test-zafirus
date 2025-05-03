@@ -1,6 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>list</ion-title>
+    <ion-title>{{'TITLE-LIST-PAGE' | translate }}</ion-title>
+    <ion-button (click)="changeLanguage()" id="lang-options" slot="end" shape="round">
+      <ion-icon slot="end" name="language-outline"></ion-icon>
+      {{currentLang === 'es' ? 'EN' : 'ES'}}
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -19,10 +23,11 @@
   }
   <ion-toast
     class="{{className}}"
-    icon="globe"
+    icon="checkmark-circle-outline"
     [isOpen]="isToastOpen"
-    message="{{toastMessage}}"
+    message="{{toastMessage | translate}}"
     [duration]="3000"
+    [position]="'bottom'"
     (didDismiss)="setToastOpen()"
   ></ion-toast>
 </ion-content>

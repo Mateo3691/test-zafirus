@@ -1,0 +1,9 @@
+{
+    "TITLE-LIST-PAGE": "Bienvenido!",
+    "TITLE-DETAIL-PAGE": "Detalle del Pokemon",
+    "ERROR-TOAST": "Ocurrió un error al cargar los datos!",
+    "SUCCESS-TOAST": "Datos cargados correctamente!",
+    "POKEMON-MOVES": "Movimientos",
+    "POKEMON-TYPES": "Tipos",
+    "POKEMON-ABILITIES": "Habilidades"
+}

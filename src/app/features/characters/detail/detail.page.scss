@@ -8,10 +8,12 @@ ion-note.name-class{
     font-weight: 600;
 }
 
-.centered-container {
+.text-name {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-block: -1rem 0.5rem;
+
   }
 
 ion-thumbnail {

@@ -5,6 +5,7 @@ import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalo
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
+import { provideI18nSupport } from './app/core/i18n/translate.provider';
 import { loadingInterceptor } from './app/core/interceptors/loading.interceptor';
 
 bootstrapApplication(AppComponent, {
@@ -15,5 +16,6 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(
       withInterceptors([loadingInterceptor]),
     ),
+    provideI18nSupport()
   ],
 });

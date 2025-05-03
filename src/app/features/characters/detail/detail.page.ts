@@ -13,6 +13,7 @@ import {
   IonToast,
   IonToolbar
 } from '@ionic/angular/standalone';
+import { TranslateModule } from '@ngx-translate/core';
 import { CharactersApiService } from '../../../core/characters/characters-api.service';
 import { PokemonCharacterDetail } from '../../../core/characters/characters.model';
 
@@ -26,7 +27,8 @@ import { PokemonCharacterDetail } from '../../../core/characters/characters.mode
     IonLabel,
     IonList,
     IonNote,
-    IonToast]
+    IonToast,
+    TranslateModule]
 })
 export class DetailPage {
 

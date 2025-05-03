@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { IonAvatar, IonContent, IonHeader, IonItem, IonLabel, IonList, IonTitle, IonToast, IonToolbar } from '@ionic/angular/standalone';
+import { IonAvatar, IonButton, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonTitle, IonToast, IonToolbar } from '@ionic/angular/standalone';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CharactersApiService } from '../../../core/characters/characters-api.service';
 
 @Component({
@@ -10,40 +11,49 @@ import { CharactersApiService } from '../../../core/characters/characters-api.se
   templateUrl: './list.page.html',
   styleUrls: ['./list.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonItem, IonLabel, IonList, IonAvatar, RouterModule, IonToast ]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonItem, IonLabel, IonList, IonAvatar, RouterModule, IonToast, TranslateModule, IonButton, IonIcon ]
 })
-export class ListPage{
-
+export class ListPage {
   pokemonService = inject(CharactersApiService);
+  translate = inject(TranslateService);
 
   isToastOpen: boolean = false;
   className: "success-toast" | "error-toast" = 'success-toast';
-  toastMessage: string = '';
+  toastMessage: string = 'SUCCESS-TOAST';
+
+  get currentLang(){
+    return this.translate.currentLang;
+  }
 
   get data(){
     return this.pokemonService.data.results;
   }
 
   ionViewWillEnter() {
+    console.log("idioma", this.translate.currentLang);
     if(!this.pokemonService.data.results.length) {
       this.pokemonService.getPokemons().subscribe({
         next: () => {
-          this.isToastOpen = true;
           this.className = 'success-toast';
-          this.toastMessage = 'Carga exitosa!';
+          this.toastMessage = 'SUCCESS-TOAST';
         },
-        error: err => {
-          this.isToastOpen = true;
+        error: () => { 
           this.className = 'error-toast';
-          this.toastMessage = 'Error al cargar los personajes!';
-          console.log('error', err);
+          this.toastMessage = 'ERROR-TOAST';
         },
+        complete: () => {
+          this.isToastOpen = true;
+        }
       })
     }
   }
 
-  setToastOpen() {
+  setToastOpen(): void{
     this.isToastOpen = !this.isToastOpen;
+  }
+
+  changeLanguage(): void{
+    this.translate.use(this.translate.currentLang === 'en' ? 'es' : 'en');
   }
 
 }

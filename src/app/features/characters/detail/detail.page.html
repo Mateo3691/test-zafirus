@@ -3,30 +3,30 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>Detalle del Pokémon</ion-title>
+    <ion-title>{{'TITLE-DETAIL-PAGE' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color="light">
   <ion-thumbnail class="detail-image">
-    <img alt="Silhouette of mountains" src="{{pokemonImage}}" />
+    <img alt="Pokemon" src="{{pokemonImage}}" />
   </ion-thumbnail>
-  <div class="centered-container">
+  <div class="text-name">
     <ion-note class="name-class" color="medium">{{pokemonName}}</ion-note>
   </div>
   <ion-list class="ion-content-view" [inset]="true">
     <ion-item>
-      <ion-label>Movimientos: </ion-label>
+      <ion-label>{{'POKEMON-MOVES' | translate}} : </ion-label>
       <ion-note slot="end" color="primary">{{pokemonMoves}}</ion-note>
     </ion-item>
 
     <ion-item>
-      <ion-label>Tipos: </ion-label>
+      <ion-label>{{'POKEMON-TYPES' | translate}} : </ion-label>
       <ion-note slot="end" color="primary">{{pokemonTypes}}</ion-note>
     </ion-item>
 
     <ion-item>
-      <ion-label>Habilidades: </ion-label>
+      <ion-label>{{'POKEMON-ABILITIES' | translate}} : </ion-label>
       <ion-note slot="end" color="primary">{{pokemonAbilities}}</ion-note>
     </ion-item>
   </ion-list>
