@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'TITLE-DETAIL-PAGE' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <ion-thumbnail class="detail-image">
+    <img alt="Pokemon" src="{{pokemonImage}}" />
+  </ion-thumbnail>
+  <div class="text-name">
+    <ion-note class="name-class" color="medium">{{pokemonName}}</ion-note>
+  </div>
+  <ion-list class="ion-content-view" [inset]="true">
+    <ion-item>
+      <ion-label>{{'POKEMON-MOVES' | translate}} : </ion-label>
+      <ion-note slot="end" color="primary">{{pokemonMoves}}</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{'POKEMON-TYPES' | translate}} : </ion-label>
+      <ion-note slot="end" color="primary">{{pokemonTypes}}</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{'POKEMON-ABILITIES' | translate}} : </ion-label>
+      <ion-note slot="end" color="primary">{{pokemonAbilities}}</ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-toast
+    class="error-toast"
+    icon="globe"
+    [isOpen]="isToastOpen"
+    message="Error al cargar el Pokémon"
+    [duration]="3000"
+    (didDismiss)="setToastOpen()"
+  ></ion-toast>
+</ion-content>

@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{'TITLE-LIST-PAGE' | translate }}</ion-title>
+    <ion-button (click)="changeLanguage()" id="lang-options" slot="end" shape="round">
+      <ion-icon slot="end" name="language-outline"></ion-icon>
+      {{currentLang === 'es' ? 'EN' : 'ES'}}
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  @if(data.length){
+    <ion-list class="ion-content-view" [inset]="true">
+      @for(hero of data; track hero){
+        <ion-item [button]="true" detail="true" [routerLink]="['/detail', hero.name]">
+          <ion-avatar slot="start">
+            <img alt="Superheroe" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+          </ion-avatar>
+          <ion-label>{{hero.name}}</ion-label>
+        </ion-item>
+      }
+    </ion-list>
+  }
+  <ion-toast
+    class="{{className}}"
+    icon="checkmark-circle-outline"
+    [isOpen]="isToastOpen"
+    message="{{toastMessage | translate}}"
+    [duration]="3000"
+    [position]="'bottom'"
+    (didDismiss)="setToastOpen()"
+  ></ion-toast>
+</ion-content>

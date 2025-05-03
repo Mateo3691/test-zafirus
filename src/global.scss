@@ -35,3 +35,74 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+.ion-content-view {
+    margin: auto !important;
+}
+
+.detail-image{
+    height: 70%;
+    margin: 0 auto;
+}
+
+ion-toast.error-toast {
+    --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
+    --background: #de5740;
+    --color: #eceaf2;
+}
+
+ion-toast.success-toast {
+    --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
+    --background: #4adc5e;
+    --color: #eceaf2;
+}
+
+ion-list{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+/**MEDIA QUERY**/
+
+@media (max-width: 768px) {
+    .ion-content-view {
+        width: 80%;
+    }
+
+    .detail-image{
+        height: 36%;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 768px) {
+    .ion-content-view {
+        width: 65%;
+    }
+
+    .detail-image{
+        height: 50%;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 992px) {
+    .ion-content-view {
+        width: 45%;
+    }
+
+    .detail-image{
+        height: 60%;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 1920px) {
+    .ion-content-view {
+        width: 1240px;
+    }
+
+    .detail-image{
+        height: 60%;
+        margin: 0 auto;
+    }
+}
