@@ -19,4 +19,9 @@ export const routes: Routes = [
     path: 'detail/:name',
     loadComponent: () => import('./features/characters/detail/detail.page').then( m => m.DetailPage)
   },
+  {
+    path: '**',
+    redirectTo: 'list',
+    pathMatch: 'full',
+  },
 ];

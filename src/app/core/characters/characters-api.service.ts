@@ -1,32 +1,41 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { LoadingController } from '@ionic/angular/standalone';
-import { Observable, tap } from 'rxjs';
+import { Capacitor, CapacitorHttp } from '@capacitor/core';
+import { from, map, Observable, tap } from 'rxjs';
 import { PokemonCharacter, PokemonCharacterDetail } from './characters.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class CharactersApiService {
+  private http = inject(HttpClient);
+  private readonly baseUrl = 'https://pokeapi.co/api/v2/pokemon';
+  isNative = Capacitor.getPlatform() !== 'web';
 
-  http = inject(HttpClient);
-  loadingCtrl =  inject(LoadingController);
+  data: { results: PokemonCharacter[] } = { results: [] };
 
-  data: {results:PokemonCharacter[]} = {results: []};
-  
-  /**
-   * Este metodo solo se va a ejecutar al inicio de la aplicacaion
-   * @returns 
-   */
-  getPokemons(): Observable<{results:PokemonCharacter[]}> {
-      return this.http.get<{results:PokemonCharacter[]}>('https://pokeapi.co/api/v2/pokemon').pipe(
-        tap(p => this.data = p))
-  }
+  getPokemons(): Observable<{ results: PokemonCharacter[] }> {
+    if (this.isNative) {
+      console.log('Native platform detected, using CapacitorHttp');
+      return from(CapacitorHttp.get({ url: this.baseUrl })).pipe(
+        map(res => res.data),
+        tap(p => this.data = p)
+      );
+    }
 
-  getPokemonById(name: string): Observable<PokemonCharacterDetail> {
-    return this.http.get<any>(`https://pokeapi.co/api/v2/pokemon/${name}`).pipe(
-      tap(p => console.log('getPokemonById', p))
+    return this.http.get<{ results: PokemonCharacter[] }>(this.baseUrl).pipe(
+      tap(p => this.data = p)
     );
   }
 
+  getPokemonById(name: string): Observable<PokemonCharacterDetail> {
+    const url = `${this.baseUrl}/${name}`;
+
+    if (this.isNative) {
+      console.log('Native platform detected, using CapacitorHttp');
+      return from(CapacitorHttp.get({ url })).pipe(
+        map(res => res.data)
+      );
+    }
+
+    return this.http.get<PokemonCharacterDetail>(url);
+  }
 }

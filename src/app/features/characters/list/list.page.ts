@@ -30,7 +30,6 @@ export class ListPage {
   }
 
   ionViewWillEnter() {
-    console.log("idioma", this.translate.currentLang);
     if(!this.pokemonService.data.results.length) {
       this.pokemonService.getPokemons().subscribe({
         next: () => {
