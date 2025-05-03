@@ -1,6 +1,6 @@
 # 💥 Pokemon Ionic App
 
-Aplicación híbrida desarrollada con **Ionic 7** y **Angular 19**, que consume datos de la API de Marvel o de mocks locales. Incluye soporte multilenguaje y arquitectura modular basada en componentes standalone.
+Aplicación híbrida desarrollada con **Ionic 7** y **Angular 19**, que consume datos de la API de Pokemon. Incluye soporte multilenguaje y arquitectura modular basada en componentes standalone.
 
 ---
 
